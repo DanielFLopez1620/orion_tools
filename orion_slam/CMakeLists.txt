@@ -10,7 +10,7 @@ find_package(ament_cmake REQUIRED)
 find_package(slam_toolbox REQUIRED)
 
 install(
-  DIRECTORY launch config
+  DIRECTORY launch config rviz
   DESTINATION share/${PROJECT\_NAME}
 )
 

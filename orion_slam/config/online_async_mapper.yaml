@@ -23,7 +23,7 @@ slam_toolbox:
 
 
     # ------------------------ SCAN PARAMETERS --------------------------------
-    min_laser_range: 0.05   # Minimum range of the LIDAR
+    min_laser_range: 0.5   # Minimum range of the LIDAR
     max_laser_range: 5.0    # Maximun range of the LIDAR
     scan_topic: /scan       # Topic with the LIDAR/Laser scan information
     scan_buffer_size: 10    # Number of scans to buffer into a chain
@@ -64,7 +64,7 @@ slam_toolbox:
 
     # ------------------------- MAP PARAMS ------------------------------------
     enable_interactive_mode: true  # Will retain laser cache, valid for mapping
-    resolution: 0.05               # Map resolution in meters per pixel
+    resolution: 0.025               # Map resolution in meters per pixel
     map_update_interval: 5.0       # Time to update map for other visualization
     use_response_expansion: true   # Whether to update grid size if no match
 
@@ -79,7 +79,3 @@ slam_toolbox:
     loop_search_space_dimension: 8.0               # Size search for loop clou.
     loop_search_space_resolution: 0.05             # Res. search for loop clou.
     loop_search_space_smear_deviation: 0.03        # For smooth out responses
-
-    # TODO: Maybe delete.... (Synchronous)
-    throttle_scans: 1
-    minimum_time_interval: 0.05     # Minimum time interval between laser scans
