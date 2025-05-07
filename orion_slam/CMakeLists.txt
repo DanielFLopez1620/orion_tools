@@ -8,6 +8,8 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(slam_toolbox REQUIRED)
+find_package(cartographer_ros REQUIRED)
+find_package(cartographer_ros_msgs REQUIRED)
 
 install(
   DIRECTORY launch config rviz
