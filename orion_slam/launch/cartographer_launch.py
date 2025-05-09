@@ -15,6 +15,8 @@ def generate_launch_description():
     resolution   = LaunchConfiguration('resolution', default='0.05')
     publish_sec  = LaunchConfiguration('publish_period_sec', default='1.0')
     use_rviz = LaunchConfiguration('use_rviz', default='true')
+    rviz_config_file = os.path.join(get_package_share_directory('orion_slam'), 'rviz', 'cartographer_config.rviz') 
+
 
     return LaunchDescription([
         DeclareLaunchArgument('use_sim_time', default_value='false',
@@ -45,6 +47,7 @@ def generate_launch_description():
             package='rviz2',
             executable='rviz2',
             name='rviz2',
+            arguments=['-d', rviz_config_file],
             parameters=[{'use_sim_time': use_sim_time}],
             condition=IfCondition(use_rviz),
             output='screen'),
