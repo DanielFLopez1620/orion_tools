@@ -29,7 +29,9 @@ def generate_launch_description():
              name='cartographer_node', output='screen',
              parameters=[{'use_sim_time': use_sim_time}],
              arguments=['-configuration_directory', config_dir,
-                        '-configuration_basename', lua_file]),
+                        '-configuration_basename', lua_file], remappings=[
+                ('odom', '/mobile_base_controller/odom')
+            ]),
         DeclareLaunchArgument('resolution', default_value=resolution,
                                description='Resolución del grid'),
         DeclareLaunchArgument('publish_period_sec', default_value=publish_sec,

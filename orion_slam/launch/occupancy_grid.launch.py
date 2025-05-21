@@ -4,8 +4,8 @@ from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
 def generate_launch_description():
-    use_sim_time      = LaunchConfiguration('use_sim_time', default='false')
-    resolution        = LaunchConfiguration('resolution', default='0.05')
+    use_sim_time = LaunchConfiguration('use_sim_time', default='false')
+    resolution = LaunchConfiguration('resolution', default='0.05')
     publish_period_sec= LaunchConfiguration('publish_period_sec', default='1.0')
 
     return LaunchDescription([
@@ -19,5 +19,7 @@ def generate_launch_description():
              name='cartographer_occupancy_grid_node', output='screen',
              parameters=[{'use_sim_time': use_sim_time}],
              arguments=['-resolution', resolution,
-                        '-publish_period_sec', publish_period_sec]),
+                        '-publish_period_sec', publish_period_sec], remappings=[
+                ('odom', '/mobile_base_controller/odom')
+            ]),
     ])
