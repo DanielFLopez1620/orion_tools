@@ -1,4 +1,8 @@
+# ///////////////////////// IMPORT LIBRARIES AND REQUIREMENTS ///////////////// 
+# ------------------------------ PYTHON DEPENDENCIES --------------------------
 import os
+# ------------------------------ LAUNCH DEPENDENCIES --------------------------
+from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
 from launch.substitutions import LaunchConfiguration
@@ -7,32 +11,35 @@ from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 
-from ament_index_python.packages import get_package_share_directory
-
+# //////////////////////////// GLOBAL VARIABLES //////////////////////////////
 ARGS = [
     DeclareLaunchArgument('use_sim_time', default_value='false',
-        description='Use sim time if true'),
+        description='Use sim time if true',
+        choices=['true', 'false']),
     DeclareLaunchArgument('use_gui', default_value='true',
-        description="Use RViz to visualize SLAM in real time")
+        description="Use RViz to visualize SLAM in real time",
+        choices=['true', 'false'])
 ]
 
-
+# ///////////////////////// LAUNCH DESCRIPTION ////////////////////////////////
 def generate_launch_description():
     # Generate launch description
     ld = LaunchDescription(ARGS)
     
-    # 
+    # Paths to consider
     slam_package = 'slam_toolbox'
     orion_slam = 'orion_slam'
     slam_config = os.path.join(
-        get_package_share_directory(orion_slam),'config','online_async_mapper.yaml')
+        get_package_share_directory(orion_slam),
+        'config','online_async_mapper.yaml')
     rviz_config_file = os.path.join(orion_slam, 'rviz', 'slam_config.rviz')
 
     # Include launch for slam_toolbox
     ld.add_action(
         IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
-            get_package_share_directory(slam_package),'launch','online_async_launch.py')]), 
+            get_package_share_directory(slam_package),
+            'launch', 'online_async_launch.py')]), 
         launch_arguments={'use_sim_time': LaunchConfiguration('use_sim_time'), 
                           'slam_params_file': slam_config}.items()
         )

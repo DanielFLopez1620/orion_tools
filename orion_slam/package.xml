@@ -2,10 +2,13 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>orion_slam</name>
-  <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="dfelipe.lopez@gmail.com">dan1620</maintainer>
-  <license>TODO: License declaration</license>
+  <version>0.4.0</version>
+  <description>
+    Package with launch files to use the ORION robot with SLAM appls
+    like slam_toolbox and cartographer.
+  </description>
+  <maintainer email="dfelipe.lopez@gmail.com">DanielFLopez1620</maintainer>
+  <license>BSD-3-Clause</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 

@@ -25,7 +25,7 @@ slam_toolbox:
     # ------------------------ SCAN PARAMETERS --------------------------------
     min_laser_range: 0.5   # Minimum range of the LIDAR
     max_laser_range: 5.0    # Maximun range of the LIDAR
-    scan_topic: /scan       # Topic with the LIDAR/Laser scan information
+    scan_topic: /scan_filtered       # Topic with the LIDAR/Laser scan information
     scan_buffer_size: 10    # Number of scans to buffer into a chain
     scan_queue_size: 1      # Should always be one during async mode
 
