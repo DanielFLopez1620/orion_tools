@@ -11,10 +11,10 @@ ARGS = [
         default_value='false',
         description='Use simulation clock',
         choices=['false', 'true']),
-    DeclareLaunchArgument('resolution', 
+    DeclareLaunchArgument('resolution',
         default_value='0.05',
         description='Grid cell resolution'),
-    DeclareLaunchArgument('publish_period_sec', 
+    DeclareLaunchArgument('publish_period_sec',
         default_value='1.0',
         description='Publish period in seconds'),
 ]
@@ -22,7 +22,7 @@ ARGS = [
 def generate_launch_description():
     # Start launch description and load arguments
     ld = LaunchDescription(ARGS)
-    
+
     # Add occupancy grid carto node
     ld.add_action(
         Node(package='cartographer_ros', executable='cartographer_occupancy_grid_node',
@@ -31,7 +31,7 @@ def generate_launch_description():
                  'use_sim_time': LaunchConfiguration('use_sim_time', default='false')}],
             arguments=[
                 '-resolution', LaunchConfiguration('resolution'),
-                '-publish_period_sec', LaunchConfiguration('publish_period_sec')], 
+                '-publish_period_sec', LaunchConfiguration('publish_period_sec')],
             remappings=[
                 ('odom', '/mobile_base_controller/odom')
             ])

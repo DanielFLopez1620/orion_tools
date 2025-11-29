@@ -11,7 +11,7 @@ options = {
   -- Frames related params
   map_frame = "map",
   tracking_frame = "base_link",
-  published_frame = "odom",
+  published_frame = "base_link",
   odom_frame = "odom",
 
   -- Booleans related with pose and frames

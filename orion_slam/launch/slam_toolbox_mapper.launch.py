@@ -1,4 +1,4 @@
-# ///////////////////////// IMPORT LIBRARIES AND REQUIREMENTS ///////////////// 
+# ///////////////////////// IMPORT LIBRARIES AND REQUIREMENTS /////////////////
 # ------------------------------ PYTHON DEPENDENCIES --------------------------
 import os
 # ------------------------------ LAUNCH DEPENDENCIES --------------------------
@@ -25,7 +25,7 @@ ARGS = [
 def generate_launch_description():
     # Generate launch description
     ld = LaunchDescription(ARGS)
-    
+
     # Paths to consider
     slam_package = 'slam_toolbox'
     orion_slam = 'orion_slam'
@@ -39,8 +39,8 @@ def generate_launch_description():
         IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory(slam_package),
-            'launch', 'online_async_launch.py')]), 
-        launch_arguments={'use_sim_time': LaunchConfiguration('use_sim_time'), 
+            'launch', 'online_async_launch.py')]),
+        launch_arguments={'use_sim_time': LaunchConfiguration('use_sim_time'),
                           'slam_params_file': slam_config}.items()
         )
     )

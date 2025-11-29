@@ -16,21 +16,21 @@ from launch_ros.actions import Node
 ARGS = [
     DeclareLaunchArgument('use_sim_time', default_value='false',
         description='Use simulation clock'),
-    DeclareLaunchArgument('carto_config_dir', 
+    DeclareLaunchArgument('carto_config_dir',
         default_value=os.path.join(
             get_package_share_directory('orion_slam'), 'config'),
         description='Lua config path'),
-    DeclareLaunchArgument('configuration_basename', 
+    DeclareLaunchArgument('configuration_basename',
         default_value='cartographer.lua',
         description='Lua name file'),
-    DeclareLaunchArgument('resolution', 
+    DeclareLaunchArgument('resolution',
         default_value='0.05',
         description='Grid resolution'),
-    DeclareLaunchArgument('publish_period_sec', 
+    DeclareLaunchArgument('publish_period_sec',
         default_value='1.0',
         description='Update period (seconds) of the grid'),
     DeclareLaunchArgument('use_rviz', default_value='true',
-        description='Wheter to visualize on rviz witht the default config',
+        description='Whether to visualize on rviz with the default config',
         choices=['true', 'false'])
 ]
 
@@ -43,7 +43,8 @@ def generate_launch_description():
     """
 
     # Considered paths
-    rviz_config_file = os.path.join(get_package_share_directory('orion_slam'), 'rviz', 'cartographer_config.rviz') 
+    rviz_config_file = os.path.join(get_package_share_directory('orion_slam'),
+        'rviz', 'cartographer_config.rviz')
 
     # Initialize launch description and send args
     ld = LaunchDescription(ARGS)
@@ -68,7 +69,7 @@ def generate_launch_description():
     )
 
     # Launch the occupancy grid file
-    ld.add_action(  
+    ld.add_action(
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 [ThisLaunchFileDir(), '/occupancy_grid.launch.py']),

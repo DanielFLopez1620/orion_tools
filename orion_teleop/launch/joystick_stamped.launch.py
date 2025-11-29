@@ -22,10 +22,10 @@ From: https://github.com/ros2/teleop_twist_joy
 Modified by: DanielFLopez1620
 """
 
-# ////////////////////////////// IMPORT LIBRARIES AND REQUIREMENTS /////////////////////////////////////////////////// 
-# ------------------------------ PYTHON DEPENDENCIES -----------------------------------------------------------------
+# ////////////////////////////// IMPORT LIBRARIES AND REQUIREMENTS /////////////
+# ------------------------------ PYTHON DEPENDENCIES ---------------------------
 import os
-# ------------------------------ LAUNCH DEPENDENCIES -----------------------------------------------------------------
+# ------------------------------ LAUNCH DEPENDENCIES --------------------------
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
@@ -33,7 +33,7 @@ from launch.substitutions import LaunchConfiguration, TextSubstitution
 from launch_ros.actions import Node
 
 
-# /////////////////////////////// GLOBAL DEFINITIONS ////////////////////////////////////////////////////////////////
+# /////////////////////////////// GLOBAL DEFINITIONS //////////////////////////
 ARGS = [
     DeclareLaunchArgument(
         'joy_vel', default_value='/mobile_base_controller/cmd_vel',
@@ -56,11 +56,12 @@ ARGS = [
             description="Path to the config file of the respective controller device"),
 ]
 
-# ////////////////////////////// LAUNCH DESCRIPTION /////////////////////////////////////////////////////////////////
+# ////////////////////////////// LAUNCH DESCRIPTION ////////////////////////////
 def generate_launch_description():
     """
-    Modified launch file from the teleop_twist_joy focused on moving and using the ORION robot with a controller,
-    by default a Xbox controller to interact with the /mobile_base_controller/cmd_vel topic.
+    Modified launch file from the teleop_twist_joy focused on moving and using
+    the ORION robot with a controller, by default a Xbox controller to
+    interact with the /mobile_base_controller/cmd_vel topic.
     """
 
     # Launch description and adding argument
@@ -69,8 +70,8 @@ def generate_launch_description():
     # Run node to detect controller events
     ld.add_action(
         Node(
-            package='joy', 
-            executable='joy_node', 
+            package='joy',
+            executable='joy_node',
             name='joy_node',
             parameters=[{
                 'device_id': LaunchConfiguration('joy_dev'),
@@ -82,11 +83,11 @@ def generate_launch_description():
     # Run node for using the controller to pub Twist (stamped or not) messages
     ld.add_action(
         Node(
-            package='teleop_twist_joy', 
+            package='teleop_twist_joy',
             executable='teleop_node',
             name='teleop_twist_joy_node',
             parameters=[
-                LaunchConfiguration('config_filepath'), 
+                LaunchConfiguration('config_filepath'),
                 {'publish_stamped_twist': LaunchConfiguration('publish_stamped_twist')}],
             remappings={('/cmd_vel', LaunchConfiguration('joy_vel'))},
             )
