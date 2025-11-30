@@ -32,7 +32,9 @@ def generate_launch_description():
     slam_config = os.path.join(
         get_package_share_directory(orion_slam),
         'config','online_async_mapper.yaml')
-    rviz_config_file = os.path.join(orion_slam, 'rviz', 'slam_config.rviz')
+    rviz_config_file = os.path.join(
+        get_package_share_directory(orion_slam),
+        'rviz', 'slam_config.rviz')
 
     # Include launch for slam_toolbox
     ld.add_action(
