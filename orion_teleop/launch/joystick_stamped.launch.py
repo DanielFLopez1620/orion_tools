@@ -29,7 +29,7 @@ import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
-from launch.substitutions import LaunchConfiguration, TextSubstitution
+from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
 
@@ -49,10 +49,8 @@ ARGS = [
         'publish_stamped_twist', default_value='true',
         description="Whether to use stamped twist or not",
         choices=['true', 'false']),
-    DeclareLaunchArgument('config_filepath', default_value=[
-            TextSubstitution(text=os.path.join(
-                get_package_share_directory('teleop_twist_joy'), 'config', '')),
-            LaunchConfiguration('joy_config'), TextSubstitution(text='.config.yaml')],
+    DeclareLaunchArgument('config_filepath', default_value=os.path.join(
+            get_package_share_directory('orion_teleop'), 'config', 'joystick_config.yaml'),
             description="Path to the config file of the respective controller device"),
 ]
 
