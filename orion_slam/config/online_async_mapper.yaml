@@ -50,8 +50,8 @@ slam_toolbox:
 
     # -------------------------- POSE PARAMETERS ------------------------------
     transform_publish_period: 0.02  # Rate at which the robot pose is published
-    minimum_travel_distance: 0.5    # Minimum travel distance between updates
-    minimum_travel_heading: 0.5     # Minimum travel heading between updates
+    minimum_travel_distance: 0.2    # Minimum travel distance between updates
+    minimum_travel_heading: 0.3     # Minimum travel heading between updates
     transform_timeout: 0.5          # TF timeout to loop up transforms
     tf_buffer_duration: 30.0        # Duration to stor TF msg for loop up
     stack_size_to_use: 40000000     # Bytes to reset stack size
@@ -65,7 +65,7 @@ slam_toolbox:
     # ------------------------- MAP PARAMS ------------------------------------
     enable_interactive_mode: true  # Will retain laser cache, valid for mapping
     resolution: 0.025               # Map resolution in meters per pixel
-    map_update_interval: 5.0       # Time to update map for other visualization
+    map_update_interval: 1.0       # Time to update map for other visualization
     use_response_expansion: true   # Whether to update grid size if no match
 
     fine_search_angle_offset: 0.00349        # For testing fine scan matching
