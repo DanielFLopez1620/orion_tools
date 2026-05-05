@@ -1,7 +1,5 @@
-# ///////////////////////// IMPORT LIBRARIES AND REQUIREMENTS /////////////////
-# ------------------------------ PYTHON DEPENDENCIES --------------------------
 import os
-# ------------------------------ LAUNCH DEPENDENCIES --------------------------
+
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
@@ -11,7 +9,6 @@ from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 
-# //////////////////////////// GLOBAL VARIABLES //////////////////////////////
 ARGS = [
     DeclareLaunchArgument('use_sim_time', default_value='false',
         description='Use sim time if true',
@@ -21,12 +18,9 @@ ARGS = [
         choices=['true', 'false'])
 ]
 
-# ///////////////////////// LAUNCH DESCRIPTION ////////////////////////////////
 def generate_launch_description():
-    # Generate launch description
     ld = LaunchDescription(ARGS)
 
-    # Paths to consider
     slam_package = 'slam_toolbox'
     orion_slam = 'orion_slam'
     slam_config = os.path.join(
@@ -36,7 +30,6 @@ def generate_launch_description():
         get_package_share_directory(orion_slam),
         'rviz', 'slam_config.rviz')
 
-    # Include launch for slam_toolbox
     ld.add_action(
         IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
@@ -47,7 +40,6 @@ def generate_launch_description():
         )
     )
 
-    # Add Rviz2 node
     ld.add_action(
         Node(
             package='rviz2',
@@ -58,5 +50,4 @@ def generate_launch_description():
         )
     )
 
-    # Return launch description
     return ld

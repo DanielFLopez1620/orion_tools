@@ -44,7 +44,7 @@ Follow the next step to use these packages:
     sudo apt update
     sudo apt install python3-rosdep -y
     cd ~/ros2_ws
-    sudo rosdep init
+    sudo rosdep init  # Only needed once per system; skip if already initialized
     rosdep update
     rosdep install --from-paths src --ignore-src -r -y
     ~~~
@@ -54,6 +54,7 @@ Follow the next step to use these packages:
     ~~~bash
     cd ~/ros2_ws
     colcon build --packages-select orion_navigation orion_slam orion_teleop
+    source install/setup.bash
     ~~~
 
 6. You are ready to use the packages.

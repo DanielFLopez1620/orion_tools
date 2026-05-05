@@ -27,9 +27,9 @@ Launch the **joy node** and the **teleop joy node** set up for the Xbox Controll
 # Additional arguments:
 #  joy_vel: Topic name, by default /mobile_base_controller/cmd_vel
 #  joy_config: Select the platform, can be ps3 or xbox (xbox by default)
-#  joy_dev: Device/port of the controller, by default 0 for /dev/ttyUSB0
+#  joy_dev: Device/port of the controller, by default 0 for /dev/input/js0
 #  publish_stamped_twist: true for using Twist Stamped messages
-#  config_filepath: Path ot search for the config under teleop_twist_joy/config
+#  config_filepath: Path to the config yaml file (default: orion_teleop/config/joystick_config.yaml)
 ros2 launch orion_teleop joystick_stamped.launch.py
 ~~~
 
@@ -42,5 +42,7 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard \
     --ros-args \
     -p stamped:=true \
     -p frame_id:="base_link" \
-    --remap cmd_vel:=/mobile_base_controller
+    --remap cmd_vel:=/mobile_base_controller/cmd_vel
 ~~~
+
+When using this utility, remember to set up the velocity of the robot considering the values provided in [config/joystick_config.yaml](/orion_teleop/config/joystick_config.yaml)
