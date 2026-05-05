@@ -6,7 +6,9 @@ Additional tools you can integrate with ORION robot, for example, SLAM, Autonomo
 
 The source code is released under a [BSD 3 Clause license](/LICENSE)
 
-**Team**: [Daniel Felipe López Escobar](https://github.com/DanielFLopez1620), [Miguel Ángel Gonzalez Rodriguez](https://github.com/miguelgonrod), and [Alejandro Bermúdez Fajardo](https://github.com/alexoberco).
+**Current fork maintened by:** [Daniel Felipe López Escobar](https://github.com/DanielFLopez1620).
+
+**Originally developed by**: [Daniel Felipe López Escobar](https://github.com/DanielFLopez1620), [Miguel Ángel Gonzalez Rodriguez](https://github.com/miguelgonrod), and [Alejandro Bermúdez Fajardo](https://github.com/alexoberco).
 
 The ORION Tools packages have been tested under [ROS](https://www.ros.org/) **Jazzy** distribution.
 
