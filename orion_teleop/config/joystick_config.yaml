@@ -1,5 +1,6 @@
 ---
 # Default joystick config for an XBOX Series X/S Controller
+# If you want to use a PS3 controller or other, consider creating another .yaml file
 
 joy_node:
   ros__parameters:
@@ -10,19 +11,20 @@ joy_node:
 teleop_twist_joy_node:
   ros__parameters:
     axis_linear:
-      x: 1
+      x: 1  # Left stick vertical (Xbox)
     scale_linear:
-      x: 0.28
+      x: 0.28  # m/s
     scale_linear_turbo:
-      x: 0.33
+      x: 0.33  # m/s
 
     axis_angular:
-      yaw: 0
+      yaw: 0  # Left stick horizontal (Xbox)
     scale_angular:
-      yaw: 0.5
+      yaw: 0.5  # rad/s
     scale_angular_turbo:
-      yaw: 1.0
+      yaw: 1.0  # rad/s
 
-    # enable_button: 2
-    # enable_turbo_button: 5
+    # Deadman switch enabled — robot responds only when holding RB button
+    # enable_button: 2        # X button
+    # enable_turbo_button: 5  # RB button
     # require_enable_button: true

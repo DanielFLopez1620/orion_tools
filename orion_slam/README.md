@@ -8,7 +8,7 @@ The source code is released under a [BSD 3 Clause license](/LICENSE)
 
 **Author**: [Daniel Felipe López Escobar](https://github.com/DanielFLopez1620) and [Alejandro Bermúdez Fajardo](https://github.com/alexoberco).
 
-The *orion_teleop* package has been tested under *ROS* Jazzy.
+The *orion_slam* package has been tested under *ROS* Jazzy.
 
 ## 📚 Table of contents
 
@@ -53,13 +53,10 @@ Enables the usage of [slam_toolbox](https://github.com/SteveMacenski/slam_toolbo
 
 ~~~bash
 # Basic usage:
-# ros2 launch orion_slam slam_toolbox_mapper.launch.py
+ros2 launch orion_slam slam_toolbox_mapper.launch.py
 # Additional args:
-#   use_sim_time: Whether to use simulation clock.
-#   use_gui: Whether or not to call the visualization.
-#   autostart: Whether to start automatically or wait manual call.
-#   use_lifecycle_manager: Enable bond connection during node activation
-#   slam_params_file: Path to config file
+#   use_sim_time: Whether to use simulation clock (default: false)
+#   use_gui: Whether or not to launch RViz2 (default: true)
 ~~~
 
 ## 📚 Additional configurations

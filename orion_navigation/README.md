@@ -8,7 +8,7 @@ The source code is released under a [BSD 3 Clause license](/LICENSE)
 
 **Author**: [Daniel Felipe López Escobar](https://github.com/DanielFLopez1620).
 
-The *orion_teleop* package has been tested under *ROS* Jazzy.
+The *orion_navigation* package has been tested under *ROS* Jazzy.
 
 ## 📚 Table of contents
 
@@ -21,23 +21,25 @@ The *orion_teleop* package has been tested under *ROS* Jazzy.
 
 Launches the [nav2_bringup](https://index.ros.org//p/nav2_bringup/) package under a compatible configuration for ORION with the visualization node.
 
+> **Note:** Nav2 lifecycle nodes start inactive (`autostart: false`). After launch, activate them manually from the RViz2 *Lifecycle Manager* panel or via `ros2 lifecycle`.
+
+> **Note:** A pre-built map file is required for navigation. Generate one first with `orion_slam`.
+
 ~~~bash
 # Basic usage:
-# ros2 launch orion_navigation nav2_default.launch.py
+ros2 launch orion_navigation nav2_default.launch.py
 # Additional args:
-#   - use_sim_time: Whether or not to use simulation clock
-#   - namespace: Robot namespace
-#   - map: Path to the map file
-#   - params_file: Path to the nav2 config file.
-#   - use_namespace: Whether or not to apply namespace to nav stack
-#   - slam: Whether or not to run SLAM.
-#   - autostart: To indicate if it starts automatically the nav2 stack
-#   - use_composition: To use composed bringup
-#   - use_respawn: Whether to try respawn if a node fails
-#   - log_level: Info, debug or error.
-#   - use_lifecycle_manager: Enable bond connection
-#   - use_localization: To enable localization or not.
-#   - slam_params_file: Path to slam config under slam_toolbox/config dir.
-#   - container_name: Name of the container if composition is enabled.
+#   - use_sim_time: Whether or not to use simulation clock (default: true)
+#   - namespace:   Robot namespace (default: '')
+#   - map:         Full path to the map yaml file (default: maps/map.yaml)
+#   - params_file: Full path to the nav2 config yaml file
 ~~~
 
+## 📚 Additional configurations
+
+Tune the Nav2 stack by editing [config/nav2_config.yaml](/orion_navigation/config/nav2_config.yaml). Key sections:
+
+- **amcl** — localization particle filter parameters
+- **controller_server / FollowPath** — DWB local planner velocity and critic weights
+- **local_costmap / global_costmap** — obstacle layer and inflation radius
+- **behavior_server** — spin, backup, and recovery behavior limits

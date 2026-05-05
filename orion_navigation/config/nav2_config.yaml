@@ -36,7 +36,7 @@ amcl:
     z_max: 0.05
     z_rand: 0.5
     z_short: 0.05
-    scan_topic: scan_filtered
+    scan_topic: scan_filtered  # Filtered scan: invalid ranges (NaN/inf) removed
     map_topic: map
     set_initial_pose: false
     always_reset_initial_pose: false

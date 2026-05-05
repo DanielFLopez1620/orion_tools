@@ -28,7 +28,7 @@ def generate_launch_description():
                 '-resolution', LaunchConfiguration('resolution'),
                 '-publish_period_sec', LaunchConfiguration('publish_period_sec')],
             remappings=[
-                ('odom', '/mobile_base_controller/odom')
+                ('odom', '/mobile_base_controller/odom')  # ros2_control diff_drive_controller topic
             ])
     )
 

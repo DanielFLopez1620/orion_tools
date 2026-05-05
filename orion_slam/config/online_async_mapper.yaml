@@ -20,9 +20,9 @@ slam_toolbox:
     base_frame: base_link
 
     # ------------------------ SCAN PARAMETERS --------------------------------
-    min_laser_range: 0.5
-    max_laser_range: 5.0
-    scan_topic: /scan_filtered
+    min_laser_range: 0.5   # Avoids detecting the robot body at close range
+    max_laser_range: 5.0   # Shorter than AMCL range; prioritizes mapping accuracy over coverage
+    scan_topic: /scan_filtered  # Filtered scan: conflicting robot collision ranges removed
     scan_buffer_size: 10
     scan_queue_size: 1  # Should always be one during async mode
 

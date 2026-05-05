@@ -53,8 +53,8 @@ def generate_launch_description():
                 '-configuration_basename', LaunchConfiguration('configuration_basename')
             ],
             remappings=[
-                ('odom', '/mobile_base_controller/odom'),
-                ('scan', '/scan_filtered')
+                ('odom', '/mobile_base_controller/odom'),  # ros2_control diff_drive_controller topic
+                ('scan', '/scan_filtered')                  # Filtered scan: invalid and conflicting ranges removed
             ]
         )
     )

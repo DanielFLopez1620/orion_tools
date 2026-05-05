@@ -69,7 +69,7 @@ def generate_launch_description():
                   ('map', map_file),
                   ('use_sim_time', use_sim_time),
                   ('params_file', params_file),
-                  ('autostart', 'False'),
+                  ('autostart', 'False'),  # Lifecycle nodes must be activated manually via rviz2 or lifecycle manager
                 ]
     )
     
