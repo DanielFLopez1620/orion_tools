@@ -22,10 +22,8 @@ From: https://github.com/ros2/teleop_twist_joy
 Modified by: DanielFLopez1620
 """
 
-# ////////////////////////////// IMPORT LIBRARIES AND REQUIREMENTS /////////////
-# ------------------------------ PYTHON DEPENDENCIES ---------------------------
 import os
-# ------------------------------ LAUNCH DEPENDENCIES --------------------------
+
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
@@ -33,7 +31,6 @@ from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
 
-# /////////////////////////////// GLOBAL DEFINITIONS //////////////////////////
 ARGS = [
     DeclareLaunchArgument(
         'joy_vel', default_value='/mobile_base_controller/cmd_vel',
@@ -54,7 +51,6 @@ ARGS = [
             description="Path to the config file of the respective controller device"),
 ]
 
-# ////////////////////////////// LAUNCH DESCRIPTION ////////////////////////////
 def generate_launch_description():
     """
     Modified launch file from the teleop_twist_joy focused on moving and using
@@ -62,10 +58,8 @@ def generate_launch_description():
     interact with the /mobile_base_controller/cmd_vel topic.
     """
 
-    # Launch description and adding argument
     ld = LaunchDescription(ARGS)
 
-    # Run node to detect controller events
     ld.add_action(
         Node(
             package='joy',
@@ -78,7 +72,6 @@ def generate_launch_description():
             }])
     )
 
-    # Run node for using the controller to pub Twist (stamped or not) messages
     ld.add_action(
         Node(
             package='teleop_twist_joy',
@@ -91,5 +84,4 @@ def generate_launch_description():
             )
     )
 
-    # Final return
     return ld

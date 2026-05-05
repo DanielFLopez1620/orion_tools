@@ -4,8 +4,8 @@
 joy_node:
   ros__parameters:
     device_id: 0  # ID connection /dev
-    deadzone: 0.05  # Joystick deadzone
-    autorepeat_rate: 20.0  # Repeat action rate
+    deadzone: 0.05
+    autorepeat_rate: 20.0
 
 teleop_twist_joy_node:
   ros__parameters:
@@ -19,7 +19,7 @@ teleop_twist_joy_node:
     axis_angular:
       yaw: 0
     scale_angular:
-      yaw: 0.5  
+      yaw: 0.5
     scale_angular_turbo:
       yaw: 1.0
 

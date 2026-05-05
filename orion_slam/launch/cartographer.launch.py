@@ -1,8 +1,5 @@
-# /////////////////////////// IMPORT LIBS AND REQUIREMENTS ////////////////////
-# -------------------------- PYTHON STD DEPENDENCIES --------------------------
 import os
 
-# -------------------------- LAUNCH DEPENDENCIES ------------------------------
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
@@ -10,8 +7,6 @@ from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, ThisLaunchFileDir
 from launch_ros.actions import Node
-
-# //////////////////////////// GLOBAL DEFINITIONS /////////////////////////////
 
 ARGS = [
     DeclareLaunchArgument('use_sim_time', default_value='false',
@@ -34,7 +29,6 @@ ARGS = [
         choices=['true', 'false'])
 ]
 
-# //////////////////////////// LAUNCH DESCRIPTION /////////////////////////////
 def generate_launch_description():
     """
     Launch the configurations required to use Cartographer (ROS version) with
@@ -42,14 +36,11 @@ def generate_launch_description():
     the robot by using this SLAM app
     """
 
-    # Considered paths
     rviz_config_file = os.path.join(get_package_share_directory('orion_slam'),
         'rviz', 'cartographer_config.rviz')
 
-    # Initialize launch description and send args
     ld = LaunchDescription(ARGS)
 
-    # Run the cartographer node
     ld.add_action(
         Node(
             package='cartographer_ros',
@@ -68,7 +59,6 @@ def generate_launch_description():
         )
     )
 
-    # Launch the occupancy grid file
     ld.add_action(
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
@@ -80,7 +70,6 @@ def generate_launch_description():
         )
     )
 
-    # Display RViz2 config for carto if desired
     ld.add_action(
          Node(
             package='rviz2',

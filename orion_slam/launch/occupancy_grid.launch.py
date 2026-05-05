@@ -1,11 +1,8 @@
-# ////////////////////////// IMPORT LIBRARIES AND REQUIREMENTS ////////////////
-# ------------------------------ LAUNCH DEPENDENCIES --------------------------
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
-# ///////////////////////////// GLOBAL DEFINITIONS ///////////////////////////
 ARGS = [
     DeclareLaunchArgument('use_sim_time',
         default_value='false',
@@ -18,12 +15,10 @@ ARGS = [
         default_value='1.0',
         description='Publish period in seconds'),
 ]
-# ///////////////////////////// LAUNCH DESCRIPTION ///////////////////////////
+
 def generate_launch_description():
-    # Start launch description and load arguments
     ld = LaunchDescription(ARGS)
 
-    # Add occupancy grid carto node
     ld.add_action(
         Node(package='cartographer_ros', executable='cartographer_occupancy_grid_node',
             name='cartographer_occupancy_grid_node', output='screen',
@@ -37,5 +32,4 @@ def generate_launch_description():
             ])
     )
 
-    # Return launch description
     return ld

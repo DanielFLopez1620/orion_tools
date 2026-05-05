@@ -1,124 +1,64 @@
-# Adaptive Monte-Carlo Localizer
 amcl:
   ros__parameters:
-    # Process noise related params
     alpha1: 0.2  # in odometry's rotation estimate from rotation
     alpha2: 0.2  # in odometry's rotation estimate from translation
     alpha3: 0.2  # in odometry's translation estimate from translation
     alpha4: 0.2  # in odometry's translation estimate from rotation
-    alpha5: 0.0  # Traslation noise from omni models
-    
-    # TF base of the robot 
+    alpha5: 0.0  # Translation noise from omni models
     base_frame_id: "base_link"
-
-    # Beam related params
-    beam_skip_distance: 0.5         # Max distance to consider skipping
+    beam_skip_distance: 0.5
     beam_skip_error_threshold: 0.9  # Percentage of non-matching to force update
-    beam_skip_threshold: 0.3        # Percentage required to skip
+    beam_skip_threshold: 0.3
     do_beamskip: false
-
-    # TF for the map
     global_frame_id: "map"
-    
-    # Exponential decay for z_short
     lambda_short: 0.1
-
-    # Laser related params
-    laser_likelihood_max_dist: 2.0        # Max distance to do obstacle inflation
-    laser_max_range: 12.0                 # Max range of the lasaer
-    laser_min_range: -1.0                 # Min range of the laser
+    laser_likelihood_max_dist: 2.0
+    laser_max_range: 12.0
+    laser_min_range: -1.0
     laser_model_type: "likelihood_field"  # likelihood_field or likelihood_field_prob
-    
-    # Setting up limits
     max_beams: 60         # Evenly-spaced beams to use when updating filter
-    max_particles: 2000   # Max particles allowed
-    min_particles: 500    # Min particles allowed
-
-    # TF for odometry
+    max_particles: 2000
+    min_particles: 500
     odom_frame_id: "odom"
-
-    # Particle filter 
     pf_err: 0.05  # Population error
     pf_z: 0.99    # Density
-
-    # Recovery params
     recovery_alpha_fast: 0.0   # Exponential decay rate for the fast avg weight filter
     recovery_alpha_slow: 0.0   # Exponential decay rate for the slow avg weight filter
     resample_interval: 1       # Number of filter updates before resampling
-
-    # Robot locomotion type
     robot_model_type: "nav2_amcl::DifferentialMotionModel"
-    
-    # Max rate at which to sotre the last estimated pose and covariance
     save_pose_rate: 0.5
-
-    # Std dv for Gauss model in z_hit
     sigma_hit: 0.2
-
-    # Set to false to prevent publishing the tf between global and odometry frame
     tf_broadcast: true
-
-    # Time to indicate that this tf is valid into the future
     transform_tolerance: 0.5
-
-    # Update for filters
     update_min_a: 0.2   # Rotational movement required before filter update
     update_min_d: 0.25  # Translational movement required before filter update
-    
-    # Z related params for mixture weight
-    z_hit: 0.5  
+    z_hit: 0.5
     z_max: 0.05
     z_rand: 0.5
     z_short: 0.05
-
-    # Scan topic (LIDAR)
     scan_topic: scan_filtered
-
-    # Map topic 
     map_topic: map
-
-    # Pose realted params
-    set_initial_pose: false           # Allow initial pose
-    always_reset_initial_pose: false  # In case of true, provide initial pose
-    first_map_only: false             # To accept more of one maps
-    
-    # Set initial pose
+    set_initial_pose: false
+    always_reset_initial_pose: false
+    first_map_only: false
     initial_pose:
       x: 0.0
       y: 0.0
       z: 0.0
       yaw: 0.0
 
-# Behavior tree navigator
 bt_navigator:
   ros__parameters:
-    # Global frame to consider
     global_frame: map
-    
-    # TF base of the robot
     robot_base_frame: base_link
-    
-    # TF transform tolerance
     transform_tolerance: 0.5
-
-    # Duration to over which the velocity should be smoothed
     filter_duration: 0.3
-    
-    # Path to the default pose behavior tree
-    default_nav_to_pose_bt_xml: "$(find-pkg-share nav2_bt_navigator)/behavior_trees/navigate_to_pose_w_replanning_and_recovery.xml" # behavior trees location.
-    
-    # Path to the default through poses behavior tree
+    default_nav_to_pose_bt_xml: "$(find-pkg-share nav2_bt_navigator)/behavior_trees/navigate_to_pose_w_replanning_and_recovery.xml"
     default_nav_through_poses_bt_xml: "$(find-pkg-share nav2_bt_navigator)/behavior_trees/navigate_to_pose_w_replanning_and_recovery.xml"
-    
-    # Always reload the requested behavior tree XML
     always_reload_bt_xml: false
-
-    # Blackboard variables related with NavigateThroughPoses
-    goal_blackboard_id: goal    # Supply the goal
-    goals_blackboard_id: goals  # Supply the goals
-    path_blackboard_id: path    # Get the path
-    
-    # Navigators types to implement the interface
+    goal_blackboard_id: goal
+    goals_blackboard_id: goals
+    path_blackboard_id: path
     navigators: ['navigate_to_pose', 'navigate_through_poses']
     navigate_to_pose:
       plugin: "nav2_bt_navigator::NavigateToPoseNavigator"
